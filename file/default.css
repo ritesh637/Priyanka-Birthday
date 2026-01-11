@@ -1,15 +1,17 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #000; /* solid black background, images removed */
+  background: linear-gradient(45deg, #FF3366 0%, #FF0000 100%);
   color: white;
   font-size: 14px;
   font-family: sans-serif;
   overflow: auto;
+  min-height: 100vh;
 }
 a {
   color: white;
   font-size: 14px;
+  text-decoration: none;
 }
 #main {
   width: 100%;
@@ -80,5 +82,52 @@ a {
   margin-top:450px;
   font-size: 25px;
   font-family: monospace;
-
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+/* Additional styles for better birthday theme */
+#message-box .birthday-message {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#message-box p {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.heart {
+  color: #FFD700;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  5% { transform: scale(1.1); }
+  10% { transform: scale(1); }
+  15% { transform: scale(1.1); }
+  20% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  #wrap, #canvas {
+    width: 90%;
+    max-width: 1100px;
+  }
+}
+.main-title {
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 40px;   /* left side shift */
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+  color: white;
+}
+
