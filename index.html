@@ -24,7 +24,7 @@
     <div id="main">
         <h4 class="main-title">🎉 HAPPY BIRTHDAY PRIYANKA 🎂</h4>
         <div id="error"><a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a> (<a href="http://firefox.com.cn/download/">Firefox</a>)</div>
-        <audio height="100" width="100" id="myAudio">
+        <audio autoplay="autoplay" height="100" width="100" id="myAudio">
             <source src="aud.mp3" type="audio/mp3" />
             <embed height="100" width="100" src="aud.mp3" />
         </audio>
@@ -43,7 +43,7 @@
             <div id="clock-box">
                 <span id="clock">577 days 0 hours 0 minutes 0 seconds</span> <!-- Change to "6940 days..." if needed -->
             </div>
-            <canvas id="canvas"></canvas>
+            <canvas id="canvas" width="1100" height="680"></canvas>
         </div>
     </div>
 
@@ -102,28 +102,23 @@
         var foot = tree.footer;
         var hold = 1;
 
-        canvas.on("click touchstart", function(e) {
-  playAudio();
-  var offset = canvas.offset();
-  var touch = e.originalEvent.touches ? e.originalEvent.touches[0] : e;
-  var x = touch.pageX - offset.left;
-  var y = touch.pageY - offset.top;
-  if (seed.hover(x, y)) {
-    hold = 0; 
-    canvas.unbind("click touchstart");
-    canvas.unbind("mousemove touchmove");
-    canvas.removeClass('hand');
-  }
-});
-
-canvas.on("mousemove touchmove", function(e) {
-  var offset = canvas.offset();
-  var touch = e.originalEvent.touches ? e.originalEvent.touches[0] : e;
-  var x = touch.pageX - offset.left;
-  var y = touch.pageY - offset.top;
-  canvas.toggleClass('hand', seed.hover(x, y));
-});
-
+        canvas.click(function(e) {
+            playAudio();
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0; 
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function(e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
 
         var seedAnimate = eval(Jscex.compile("async", function () {
             seed.draw();
